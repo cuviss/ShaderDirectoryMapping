@@ -128,8 +128,10 @@ void FShaderDirectoryMappingModule::ApplyShaderMappings()
 	FString ErrorMessage;
 	if (!Settings->ValidatePaths(ErrorMessage))
 	{
+#if WITH_EDITOR
 		FMessageDialog::Open(EAppMsgType::Ok, FText::FromString(ErrorMessage));
 		UE_LOG(LogShaderDirectoryMapping, Error, TEXT("%s"), *ErrorMessage);
+#endif
 		return;
 	}
 

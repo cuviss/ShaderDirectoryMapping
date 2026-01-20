@@ -49,7 +49,9 @@ bool UShaderDirectoryMappingSettings::ValidatePaths(FString& OutErrorMessage) co
 			const FString RealPath = Mapping.GetRealPath();
 			if (!PlatformFile.DirectoryExists(*RealPath))
 			{
+#if WITH_EDITOR
 				OutErrorMessage = FString::Printf(TEXT("Shader directory does not exist: %s (Virtual: %s)"), *RealPath, *Mapping.VirtualPath);
+#endif
 				return false;
 			}
 		}
